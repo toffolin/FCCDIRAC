@@ -110,19 +110,21 @@ class Submit:
     
         tar.close()
 
+    # mod. 9/6/2026    
     def find_eos_file(self, file_name):
 
         eos_file_full_path = self.EOS_MGM_URL + '/' + file_name
 
         with client.File() as eosFile:
-            file_status = eosFile.open(eos_file_full_path, OpenFlags.UPDATE)
+            status, _ = eosFile.open(eos_file_full_path, OpenFlags.UPDATE)
 
-        status = self.XRootDStatus2Dictionnary(file_status)
-
-        if status is False or status.get(' ok') == 'False':
+        if not status.ok:
             return file_name, False
         else:
             return eos_file_full_path, True
+    
+        print("DEBUG EOS PATH:", eos_file_full_path)
+        print("DEBUG STATUS:", status)
 
     def find_eos_folder(self, folder_name):
 
