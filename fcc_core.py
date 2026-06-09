@@ -1,3 +1,4 @@
+# Last modified: L. Toffolin, 9/6/2026
 #******************************* libraries importation ***********************************#
 
 #standard libraries
@@ -19,7 +20,7 @@ import os
 # It may contain one or more FCC applications #
 #*********************************************#
 
-class Job():
+class Job:
 
 
     def __init__(self):
@@ -40,23 +41,23 @@ class Job():
 
         #DIRAC environment
         try:
-            DIRAC_PATH_AFS=os.environ["DIRAC"]
+            DIRAC_PATH_AFS = os.environ["DIRAC"]
         except:
             #print default CLIC path of source script as 'help'
-            print  self.dirac_sourcing_message
+            print(self.dirac_sourcing_message)
             quit()  
 
-    def set_sourcing_script(self,script_to_source):
+    def set_sourcing_script(self, script_to_source):
         self.script_to_source = script_to_source
 
-    def append(self,application):
+    def append(self, application):
         self._fcc_applications.append(application)
 
     def submit(self): 
 
         from fcc_dirac_submit import Submit 
 
-        Submit().submit(self._fcc_applications,self.script_to_source)
+        Submit().submit(self._fcc_applications, self.script_to_source)
 
 
 
@@ -67,7 +68,7 @@ class Job():
 #*********************************************************#
 
         
-class Application(): 
+class Application: 
 
 
     def __init__(self):
@@ -80,30 +81,30 @@ class Application():
            
         #not mandatory 
         self.job_specification['fcc_output_file'] = ''
-        self.job_specification['fcc_input_files']  = ''
-        self.job_specification['number_of_events']  = ''
-        self.job_specification['fccsw_path']  = ''
-        self.job_specification['paths']  = []
+        self.job_specification['fcc_input_files'] = ''
+        self.job_specification['number_of_events'] = ''
+        self.job_specification['fccsw_path'] = ''
+        self.job_specification['paths'] = []
            
     #specification of the application  
-    def set_executable(self,executable):
+    def set_executable(self, executable):
         self.job_specification['fcc_executable'] = executable
 
-    def set_configuration_file(self,conf_file):
+    def set_configuration_file(self, conf_file):
         self.job_specification['fcc_conf_file'] = conf_file
         self.add_paths([conf_file])
 
-    def set_output_file(self,output_file):
+    def set_output_file(self, output_file):
         self.job_specification['fcc_output_file'] = output_file
 
-    def set_input_files(self,input_files):
-        self.job_specification['fcc_input_files']  = input_files
+    def set_input_files(self, input_files):
+        self.job_specification['fcc_input_files'] = input_files
 
-    def set_number_of_events(self,number_of_events):
-        self.job_specification['number_of_events']  = number_of_events
+    def set_number_of_events(self, number_of_events):
+        self.job_specification['number_of_events'] = number_of_events
 
-    def set_fccsw_path(self,fccsw_path):
-        self.job_specification['fccsw_path']  = fccsw_path   
+    def set_fccsw_path(self, fccsw_path):
+        self.job_specification['fccsw_path'] = fccsw_path   
 
-    def add_paths(self,paths):
-        self.job_specification['paths']  += paths     
+    def add_paths(self, paths):
+        self.job_specification['paths'] += paths
