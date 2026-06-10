@@ -47,7 +47,7 @@ Script.registerSwitch('w', 'wms', "WMS where to run", cliParams.setWMS)
 Script.parseCommandLine(ignoreErrors=False)
 # Get the list of services (the switch above appearer as servicesList[0])
 servicesList = Script.getPositionalArgs()
-print servicesList
+print servicesList() #FIXME
 
 from ILCDIRAC.Interfaces.API.DiracILC import DiracILC
 from ILCDIRAC.Interfaces.API.NewInterface.UserJob import UserJob
